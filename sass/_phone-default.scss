@@ -1,0 +1,39 @@
+h1 {color:red;}
+
+*{
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+}
+
+nav{
+    
+}
+.logo{
+    color:white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+.nav-links{
+    display:flex;
+    justify-content: space-around;
+    width:35%;
+    float:right;
+}
+.nav-links li{
+    justify-content: space-around;
+   display: flex;
+   margin: 10px;
+}
+.burger div{
+    width: 25px;
+    height: 5px;
+    margin: 5px;
+    background-color: white;
+    display:visible;
+
+}
+.mycol{
+    border: 30px;
+}

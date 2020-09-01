@@ -1,0 +1,636 @@
+
+
+
+
+/*
+####################################################
+M E D I A  Q U E R I E S
+####################################################
+*/
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Bootstrap 4 breakpoints
+*/
+
+/* 
+Extra small devices (portrait phones, less than 576px) 
+No media query since this is the default in Bootstrap because it is "mobile first"
+*/
+body {  font-family:  'Roboto', sans-serif;  color:white; background-color:white; font-size:12px; 	}
+			 a { color: inherit; } 
+				/*{border: 1px solid black;}*/
+			.myfooter{
+				background-color:#dcdcdc;
+				
+			}
+		.nav-link{
+			line-height:15px;
+		}
+		.navx{
+			background-color:#4a1326;
+		}
+		.col-centered{
+			margin: 0 auto;
+			float: none;
+		}
+		#minInput, #maxInput{
+			width:280px;
+		}
+		#inputmeret1, #inputmeret2 {
+			
+			width:280px;
+		}
+		#locationInput{
+			width:280px;
+		}
+		#currPick{
+			width:280px;
+		}
+		.pink{
+			background-color:#f3cfd5;
+			
+		}
+		.grey{
+		background-color:#eef3f8;
+	}
+		.purple{
+		background-color: #6c2539;
+	}
+		.bold{
+			font-weight:bold;
+		}
+		.blacktext{
+			color:black;
+		}
+.slick-slider {
+    margin-left: 10px;
+}
+.margin-top-15{
+	margin-top:15px;
+}
+.newline{
+	white-space: pre;
+}
+.cardline{
+	font-size:18px;
+}
+.border-bottom2 {
+	border-bottom:2px solid black;
+	}
+
+.myborder{
+		border:2px solid black;
+}
+.myborder-right{
+	border-right:2px solid black;
+}
+.myborder-left{
+	border-left:2px solid black;
+}
+.myborder-top{
+	border-top:2px solid black;
+	
+}
+.slick-prev, .slick-next
+{ background:red;}
+.slick-slide {
+    margin: 0 15px;
+  }
+  .slick-prev:before, .slick-next:before { 
+    color:#f48228!important;
+}
+
+.greyfont{
+	color: grey;
+}       
+.font14{
+	font-size:14px;
+}
+.mycardpad{
+		margin-left:5px;
+}
+.card-price{padding-left:9px;}
+}
+.card-icon{
+	float:right;border-bottom:2px solid black; border-left:2px solid black;	height:30;
+}
+.mycard {
+	color:black;
+}
+.myjumbo{
+	font-weight:bold;
+	background-color:#81344d;
+	color:white;
+	
+	
+}
+.jumbimg{
+	background-image: url("storage.jpg");
+	background-size: cover;
+	height: 428px;
+	
+}
+
+
+.feladbtn {
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background:linear-gradient(to bottom, #f9d535 5%, #f9d535 100%);
+	background-color:#f9d435;
+	border-radius:4px;
+	border:1px solid #f9d435;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+.feladbtn:hover {
+	opacity:80%;
+}
+.feladbtn:active {
+	position:relative;
+	top:1px;
+}
+.yellowText{
+	color:#f9d435;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {  
+body {  font-family:  'Roboto', sans-serif;  color:white; background-color:white; font-size:12px; 	}
+			 a { color: inherit; } 
+				/*{border: 1px solid black;}*/
+			.myfooter{
+				background-color:#dcdcdc;
+				
+			}
+		.nav-link{
+			line-height:15px;
+		}
+		.navx{
+			background-color:#4a1326;
+		}
+		.col-centered{
+			margin: 0 auto;
+			float: none;
+		}
+		#minInput, #maxInput{
+			width:80px;
+		}
+		#inputmeret1, #inputmeret2 {
+			
+			width:80px;
+		}
+		#locationInput{
+			width:370px;
+		}
+		.pink{
+			background-color:#f3cfd5;
+			
+		}
+		.grey{
+		background-color:#eef3f8;
+	}
+		.purple{
+		background-color: #6c2539;
+	}
+		.bold{
+			font-weight:bold;
+		}
+		.blacktext{
+			color:black;
+		}
+.slick-slider {
+    margin-left: 10px;
+}
+.margin-top-15{
+	margin-top:15px;
+}
+.newline{
+	white-space: pre;
+}
+.cardline{
+	font-size:18px;
+}
+.border-bottom2 {
+	border-bottom:2px solid black;
+	}
+
+.myborder{
+		border:2px solid black;
+}
+.myborder-right{
+	border-right:2px solid black;
+}
+.myborder-left{
+	border-left:2px solid black;
+}
+.myborder-top{
+	border-top:2px solid black;
+	
+}
+.slick-prev, .slick-next
+{ background:red;}
+.slick-slide {
+    margin: 0 15px;
+  }
+  .slick-prev:before, .slick-next:before { 
+    color:#f48228!important;
+}
+
+.greyfont{
+	color: grey;
+}       
+.font14{
+	font-size:14px;
+}
+.mycardpad{
+		margin-left:5px;
+}
+.card-price{padding-left:9px;}
+}
+.card-icon{
+	float:right;border-bottom:2px solid black; border-left:2px solid black;	height:30;
+}
+.mycard {
+	color:black;
+}
+.myjumbo{
+	font-weight:bold;
+	background-color:#81344d;
+	color:white;
+	
+	
+}
+.jumbimg{
+	background-image: url("storage.jpg");
+	background-size: cover;
+	height: 428px;
+	
+}
+
+
+.feladbtn {
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background:linear-gradient(to bottom, #f9d535 5%, #f9d535 100%);
+	background-color:#f9d435;
+	border-radius:4px;
+	border:1px solid #f9d435;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+.feladbtn:hover {
+	opacity:80%;
+}
+.feladbtn:active {
+	position:relative;
+	top:1px;
+}
+.yellowText{
+	color:#f9d435;
+}
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+body {  font-family:  'Roboto', sans-serif;  color:white; background-color:white; font-size:12px; 	}
+			 a { color: inherit; } 
+				/*{border: 1px solid black;}*/
+			.myfooter{
+				background-color:#dcdcdc;
+				
+			}
+		.nav-link{
+			line-height:15px;
+		}
+		.navx{
+			background-color:#4a1326;
+		}
+		.col-centered{
+			margin: 0 auto;
+			float: none;
+		}
+		#minInput, #maxInput{
+			width:70px;
+		}
+		#inputmeret1, #inputmeret2 {
+			
+			width:70px;
+		}
+		#locationInput{
+			width:340px;
+		}
+		#currPick{
+			width:80px;
+		}
+		.pink{
+			background-color:#f3cfd5;
+			
+		}
+		.grey{
+		background-color:#eef3f8;
+	}
+		.purple{
+		background-color: #6c2539;
+	}
+		.bold{
+			font-weight:bold;
+		}
+		.blacktext{
+			color:black;
+		}
+.slick-slider {
+    margin-left: 10px;
+}
+.margin-top-15{
+	margin-top:15px;
+}
+.newline{
+	white-space: pre;
+}
+.cardline{
+	font-size:18px;
+}
+.border-bottom2 {
+	border-bottom:2px solid black;
+	}
+
+.myborder{
+		border:2px solid black;
+}
+.myborder-right{
+	border-right:2px solid black;
+}
+.myborder-left{
+	border-left:2px solid black;
+}
+.myborder-top{
+	border-top:2px solid black;
+	
+}
+.slick-prev, .slick-next
+{ background:red;}
+.slick-slide {
+    margin: 0 15px;
+  }
+  .slick-prev:before, .slick-next:before { 
+    color:#f48228!important;
+}
+
+.greyfont{
+	color: grey;
+}       
+.font14{
+	font-size:14px;
+}
+.mycardpad{
+		margin-left:5px;
+}
+.card-price{padding-left:9px;}
+}
+.card-icon{
+	float:right;border-bottom:2px solid black; border-left:2px solid black;	height:30;
+}
+.mycard {
+	color:black;
+}
+.myjumbo{
+	font-weight:bold;
+	background-color:#81344d;
+	color:white;
+	
+	
+}
+.jumbimg{
+	background-image: url("storage.jpg");
+	background-size: cover;
+	height: 428px;
+	
+}
+
+
+.feladbtn {
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background:linear-gradient(to bottom, #f9d535 5%, #f9d535 100%);
+	background-color:#f9d435;
+	border-radius:4px;
+	border:1px solid #f9d435;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+.feladbtn:hover {
+	opacity:80%;
+}
+.feladbtn:active {
+	position:relative;
+	top:1px;
+}
+.yellowText{
+	color:#f9d435;
+}
+.seoBtn {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  opacity: 5%;
+}
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+			 body {  font-family:  'Roboto', sans-serif;  color:white; background-color:white; font-size:12px; 	}
+			 a { color: inherit; } 
+				/*{border: 1px solid black;}*/
+			.myfooter{
+				background-color:#dcdcdc;
+				
+			}
+		.nav-link{
+			line-height:15px;
+		}
+		.navx{
+			background-color:#4a1326;
+		}
+		.col-centered{
+			margin: 0 auto;
+			float: none;
+		}
+		#minInput, #maxInput{
+			width:80px;
+		}
+		#inputmeret1, #inputmeret2 {
+			
+			width:80px;
+		}
+		#locationInput{
+			width:370px;
+		}
+		#currPick{
+			width:80px;
+		}
+		.pink{
+			background-color:#f3cfd5;
+			
+		}
+		.grey{
+		background-color:#eef3f8;
+	}
+		.purple{
+		background-color: #6c2539;
+	}
+		.bold{
+			font-weight:bold;
+		}
+		.blacktext{
+			color:black;
+		}
+.slick-slider {
+    margin-left: 10px;
+}
+.margin-top-15{
+	margin-top:15px;
+}
+.newline{
+	white-space: pre;
+}
+.cardline{
+	font-size:18px;
+}
+.border-bottom2 {
+	border-bottom:2px solid black;
+	}
+
+.myborder{
+		border:2px solid black;
+}
+.myborder-right{
+	border-right:2px solid black;
+}
+.myborder-left{
+	border-left:2px solid black;
+}
+.myborder-top{
+	border-top:2px solid black;
+	
+}
+.slick-prev, .slick-next
+{ background:red;
+}
+.slick-slide {
+    margin: 0 15px;
+  }
+  .slick-prev:before, .slick-next:before { 
+    color:#f48228!important;
+}
+
+.greyfont{
+	color: grey;
+}       
+.font14{
+	font-size:14px;
+}
+.mycardpad{
+		margin-left:5px;
+}
+.card-price{padding-left:9px;}
+
+.card-icon{
+	float:right;border-bottom:2px solid black; border-left:2px solid black;	height:30;
+}
+.mycard {
+	color:black;
+}
+.myjumbo{
+	font-weight:bold;
+	background-color:#81344d;
+	color:white;
+	
+	
+}
+.jumbimg{
+	background-image: url("storage.jpg");
+	background-size: cover;
+	height: 428px;
+	
+}
+
+
+.feladbtn {
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background:linear-gradient(to bottom, #f9d535 5%, #f9d535 100%);
+	background-color:#f9d435;
+	border-radius:4px;
+	border:1px solid #f9d435;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+.feladbtn:hover {
+	opacity:80%;
+}
+.feladbtn:active {
+	position:relative;
+	top:1px;
+}
+.yellowText{
+	color:#f9d435;
+}
+.seoBtn {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+ 
+}
+}
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Custom media queries
+*/
+
+/* Set w
+idth to make card deck cards 100% width */
+@media (max-width: 950px) { 
+
+}

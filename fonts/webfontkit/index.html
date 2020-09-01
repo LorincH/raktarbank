@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  
+ <!-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> -->
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    
+    <style>
+      
+@font-face {
+    font-family: 'realtime-bolduploaded_file';
+    src: url('/var/fonts/webfontkit/realtime_bold-webfont.woff2') format('woff2'),
+         url('/fonts/webfontkit/realtime_bold-webfont.woff') format('woff'),
+		      url("/var/www/html/raktarbank/fonts/Exported Fonts/Realtime-Bold/Realtime Bold.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+
+}
+   body { padding-top: 70px; font-family: 'realtime-bolduploaded_file', sans-serif; color:rgb(212, 211, 211); height: 100%; }
+   .container-map{height:100%;}
+   footer{background-color:#dcdcdc; padding-top: 60px;}
+   #map {
+        /* configure the size of the map */
+        width: 100%;
+        height: 100%;
+      }
+       html,.row{height:100%;}
+   .carousel img {
+        width:100% !important;
+        min-width:100 !important;
+        height: auto;
+       
+    }
+    .kiemelt-img {
+         background-image:url("storage.jpg");
+         height:180px;
+         background-color:cornsilk;
+         background-position:center;
+         background-repeat:no-repeat;
+         
+        }
+        .my-card-img {
+
+         background-image:url("storage.jpg");
+         height:300px;
+         background-color:cornsilk;
+         background-position:center;
+         background-repeat:no-repeat;
+        }
+        
+    .kiemelt{
+      color :black;
+      font-size: 14px;
+    }
+    .colored-pink{
+      background-color:rgba(224, 167, 201, 0.644);  
+    }
+    .colored-grey{
+      background-color:#eef3f8;
+    }
+    .bongesszen{
+      color :black;
+      font-size: 16px;
+
+    }
+    p{padding-bottom:0px;}
+    
+    h5, h4,h3{font-weight: bold;
+    }
+ </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="logo.png"  class="d-inline-block align-top" alt="">
+      </a>
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+
+      </div>
+      <div class="mx-auto order-0">
+      Keress több, mint 9000 ingatlan között!
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Bejelentkezés</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Regisztráció</a>
+              </li>
+          </ul>
+        </nav>
+      </div>
+ 
+
+
+
+
+<div class=" container-fluid">
+<div class="row" style="background-color: #6c2539;">
+  <div class="col-lg-7 fluid"> <!-- carousel-->
+    <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <div class="img-fluid"><img style="width: 100%" class="d-block img-fluid " src="1.jpg" alt="First slide"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="img"><img style="width: 100%" class="d-block img-fluid" src="2.jpg" alt="Second slide"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="img"><img style="width: 100%" class="d-block img-fluid" src="3.jpg" alt="Third slide"></div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div> <!--carousel end-->
+  <div class="col-lg-4"><!--searchbar tab DIV-->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a href="#raktar" role="tab" class="nav-link "data-toggle="tab"><img src="raktartab.png"></a>
+      </li>
+      <li class="nav-item">
+        <a href="#telek" role="tab" class="nav-link"data-toggle="tab">Telek</a>
+      </li> 
+      <li class="nav-item">
+        <a href="#telephely" role="tab" class="nav-link"data-toggle="tab">Telephely</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel"class="tab-pane fadeIn  active" id="raktar"> <!--RAKTAR TAB-->
+        <form ><!--FORM Begins-->
+          <div class="form-row">
+              <div class="btn-group" id="status" data-toggle="buttons">
+                  <label class="btn btn-default btn-on-1 btn-sm active">
+                  <input type="radio" value="1" name="multifeatured_module[module_id][status]" checked="checked">ELADÓ</label>
+                  <label class="btn btn-default btn-off-1 btn-sm ">
+                  <input type="radio" value="0" name="multifeatured_module[module_id][status]">KIADÓ</label>
+              </div>
+          </div>
+
+          <div class="form-row">
+              <div class="form-group col">
+                <label for="locationInput"></label>
+                <input type="text" placeholder="Hol keresel?"class="form-control" id="locationInput" aria-describedby="">
+              </div>
+          </div>       
+        
+          <div class="form-row">
+            <div class="col-lg-2">
+              <select class="browser-default selectpicker" placeholder="EURO" id="currency" name="currency">
+                <option value="EUR">EURO</option>
+                <option value="HUF">HUF</option>
+                <option value="USD">USD</option>
+              </select>
+            </div>
+            <div class="form-group col-lg-10">
+              <div class="form-inline">
+                <label style="margin-right:5px;" for="minimumInput">MINIMUM ÁR </label>
+                <input type="number" class="form-control" id="minimumInput" aria-describedby=""> 
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-lg-2">
+            </div> <!--offset....-->
+              <div class=" form-inline col-lg-10 ">
+                  <label style="margin-right:5px;" for="maximumInput">MAXIMUM ÁR </label>
+                  <input type="number" class="form-control" id="maximumInput" aria-describedby=""> 
+              </div> 
+                  
+          </div>
+          <hr style="border: 1px solid orangered;">    
+          <div class="form-row"> <!-- meret input-->
+            <div class="col-lg-2">
+              MÉRET
+
+            </div>
+            <div class="col-lg-4">
+              <input type="number" placeholder="Minimum" class="form-control" id="minMeret" aria-describedby="">
+
+            </div>
+            <div class="col-lg-4">
+              <input type="number" placeholder="Maximum"class="form-control" id="maxMeret" aria-describedby="">
+                 
+            </div><div class="col-lg-2">
+              (m2)
+
+            </div>
+            
+
+          </div><!--meret input-->
+          <hr style="border: 1px solid orangered;">
+          <div class="form-row" ><!-- tobb feltetel-->
+            <div class="col">
+              <div class="dropdown"> 
+                <button class="btn btn-warning" type="button" data-toggle="collapse"data-target="#tobbFeltetel" aria-expanded="false" aria-controls="tobbFeltetel">x
+                </button> Több feltétel mutatása
+                <div class="collapse between" id="tobbFeltetel">
+                  <div class="card card-body"style="background-color: #6c2539;">
+                    <div class="form-check-inline col-lg-4">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Rámpa</label>
+                      <div class="col-lg-6"></div>
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Iparvágány</label>
+                    </div>
+                    
+                    <div class="form-check-inline col-lg-4 ">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Tükörfú</label>
+                      <div class="col-lg-6"></div>
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Pulykapetélő</label>
+                    </div> <!--checkboxes END-->
+                  </div>
+                </div><!--collapse END-->
+              </div>
+            </div>  <!--feltetel COL ENDS-->
+          </div>  <!--tobb feltetel ENDS-->
+          <div class="col text-center">  
+            <div>
+              <button class="btn btn-warning">KERESÉS</button>
+            </div>
+          </div>
+        
+        </form><!--FORM ENDS-->
+      </div><!--RAKTAR TAB ENDS-->
+      <div role="tabpanel"class="tab-pane fade " id="telek">TELEPS</div>
+      <div role="tabpanel"class="tab-pane fade" id="telephely">TELEPHELYZ</div> 
+    </div> <!--tabCONTENT ENDS-->
+  </div><!--searchbar ends-->     
+</div> <!-- main row-->
+<div class="row">
+  <div class="col text-center" style="background-image: linear-gradient(to right,#fd8211,#fd8211);">
+<p><h5><u>SEGÍTÜNK MEGTALÁLNI A LEGJOBB INGATLANT!</u></h5></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-center kiemelt" style="margin-top:20px;">
+    <h3>KIEMELT INGATLANOK</h3>
+  </div>
+
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 kiemelt">
+      <div class="card" style= "border: 1px solid black;" >
+        <img class="card-img-top" src="kenyeri.png" alt="Card image" style="width:100%">
+        <div class="card-body">
+          <div class="col kiemelt text-center" ><h6 class="card-title">Kenyeri Raktar</h6></div>
+          
+          <div class="row kiemelt"><!--adatok row-->
+            <div class="col-lg-7 kiemelt"><!--terulet col-->
+              Raktár: 3400nm<br>
+              Iroda : 420nm<br>
+              Telek : 6400nm
+            </div>
+            <div class="col text-center justify-content-center align-self-center"> <!--AR col-->
+              3500EUR / hó
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 kiemelt">
+      <div class="card" style= "border: 1px solid black;" >
+        <img class="card-img-top" src="kenyeri.png" alt="Card image" style="width:100%">
+        <div class="card-body">
+          <div class="col kiemelt text-center" ><h6 class="card-title">Kenyeri Raktar</h6></div>
+          
+          <div class="row kiemelt"><!--adatok row-->
+            <div class="col-lg-7 kiemelt"><!--terulet col-->
+              Raktár: 3400nm<br>
+              Iroda : 420nm<br>
+              Telek : 6400nm
+            </div>
+            <div class="col text-center justify-content-center align-self-center"> <!--AR col-->
+              3500EUR / hó
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 kiemelt">
+      <div class="card" style= "border: 1px solid black;" >
+        <img class="card-img-top" src="kenyeri.png" alt="Card image" style="width:100%">
+        <div class="card-body">
+          <div class="col kiemelt text-center" ><h6 class="card-title">Kenyeri Raktar</h6></div>
+          
+          <div class="row kiemelt"><!--adatok row-->
+            <div class="col-lg-7 kiemelt"><!--terulet col-->
+              Raktár: 3400nm<br>
+              Iroda : 420nm<br>
+              Telek : 6400nm
+            </div>
+            <div class="col text-center justify-content-center align-self-center"> <!--AR col-->
+              3500EUR / hó
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 kiemelt">
+      <div class="card" style= "border: 1px solid black;" >
+        <img class="card-img-top" src="kenyeri.png" alt="Card image" style="width:100%">
+        <div class="card-body">
+          <div class="col kiemelt text-center" ><h6 class="card-title">Kenyeri Raktar</h6></div>
+          
+          <div class="row kiemelt"><!--adatok row-->
+            <div class="col-lg-7 kiemelt"><!--terulet col-->
+              Raktár: 3400nm<br>
+              Iroda : 420nm<br>
+              Telek : 6400nm
+            </div>
+            <div class="col text-center justify-content-center align-self-center"> <!--AR col-->
+              3500EUR / hó
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-6 kiemelt">
+      <div class="card" style= "border: 1px solid black; height:330px;" >
+          <div style="font-size:22px;background-color: #6c2539;color:rgb(212, 211, 211);"class="card-body">
+            
+            <h2>Adja fel hirdetését MOST INGYEN!</h2>
+          <p>A RAKTÁRBANK.hu ingyenes biztosítja az ingatlan tulajdonosoknak</p>
+          <br><br>
+          <button type="button" class="btn btn-warning">HIRDETÉSFELADÁS</button>
+            
+          </div>
+      </div>
+    </div>
+      
+   <div class="col-lg-6 kiemelt">
+      <div class="card my-card-img" style= "border: 1px solid black;height:330px;" >
+        <!--<img class="card-img-top" src="kenyeri.png" alt="Card image" style="height:340px;"> -->
+       
+        </div>
+      </div>
+    </div>
+  <br>
+      <div class="row colored-pink bongesszen ">
+        <div class="col text-center">
+          <br><br>
+          <h3>Böngésszen Kínálatunkban!</h3>
+          <br>
+          <p> A Raktárbank.hu ingyenesen biztosítja az ingatlantulajdonosoknak a bérbe adó vagy eladó ipari ingatlanjuk testreszabott megjelenítését az ország egész területéről</p>
+          <br>
+        </div>
+        <br>
+      </div>
+      
+      <div class="row colored-pink bongesszen">
+        <div class="col text-center">
+          <img src="raktar_ikon.png">
+          <br><br>
+          <h5>Raktár Hirdetés</h5>
+          <br>
+          <p style="font-size:44px;"> 1682</p>
+        </div>
+        <div class="col text-center">
+          <img src="field_ikon.png">
+          <br><br>
+          <h5>Üres Telek</h5>
+          <br>
+          <p style="font-size:44px;"> 25</p>
+        </div>
+        <div class="col text-center">
+          <img src="szanto_ikon.png">
+          
+          <h5>Szántó</h5>
+          <br>
+          <p style="font-size:44px; "> 8</p>
+        </div>
+        <div class="col text-center">
+          <img src="negyzet_ikon.png">
+          <br><br>
+          <h5>Négyzetméter</h5>
+          <br>
+          <p style="font-size:44px;"> 9587</p>
+        </div>
+        <div class="col text-center">
+          <img src="ujhirdetes_ikon.png">
+          <br><br>
+          <h5>Új hirdetés</h5>
+          <br>
+          <p style="font-size:44px;"> 16</p>
+        </div>
+        
+        
+       
+     
+  
+      </div>
+      <br<br><br<br>
+    <div class="row ">
+      <div class="col text-center bongesszen">
+        <br><br>  
+        <h3>Legjobb Ajánlatok!</h3>
+        <br>
+        <p> A Raktárbank.hu ingyenesen biztosítja az ingatlantulajdonosoknak a bérbe adó vagy eladó ipari ingatlanjuk testreszabott megjelenítését az ország egész területéről</p>
+      </div>
+    </div>
+      
+      <div class="row">
+        <div class="col-lg-4 kiemelt">
+          <div class="card" style= "border: 1px solid black;" >
+            <img class="card-img-top" src="kenyeri.png" alt="Card image" style="width:100%">
+            <div class="card-body">
+              <div class="col kiemelt text-center" ><h6 class="card-title">Kenyeri Raktar</h6></div>
+              
+              <div class="row kiemelt"><!--adatok row-->
+                <div class="col-lg-7 kiemelt"><!--terulet col-->
+                  Raktár: 3400nm<br>
+                  Iroda : 420nm<br>
+                  Telek : 6400nm
+                </div>
+                <div class="col text-center justify-content-center align-self-center"> <!--AR col-->
+                  3500EUR / hó
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 kiemelt">
+          <div class="card" style= "border: 1px solid black;" >
+            <img class="card-img-top" src="kenyeri.png" alt="Card image" style="width:100%">
+            <div class="card-body">
+              <div class="col kiemelt text-center" ><h6 class="card-title">Kenyeri Raktar</h6></div>
+              
+              <div class="row kiemelt"><!--adatok row-->
+                <div class="col-lg-7 kiemelt"><!--terulet col-->
+                  Raktár: 3400nm<br>
+                  Iroda : 420nm<br>
+                  Telek : 6400nm
+                </div>
+                <div class="col text-center justify-content-center align-self-center"> <!--AR col-->
+                  3500EUR / hó
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 kiemelt">
+          <div class="card" style= "border: 1px solid black;" >
+            <img class="card-img-top" src="kenyeri.png" alt="Card image" style="width:100%">
+            <div class="card-body">
+              <div class="col kiemelt text-center" ><h6 class="card-title">Kenyeri Raktar</h6></div>
+              
+              <div class="row kiemelt"><!--adatok row-->
+                <div class="col-lg-7 kiemelt"><!--terulet col-->
+                  Raktár: 3400nm<br>
+                  Iroda : 420nm<br>
+                  Telek : 6400nm
+                </div>
+                <div class="col text-center justify-content-center align-self-center"> <!--AR col-->
+                  3500EUR / hó
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+  
+    </div>
+    <div class="container">
+      <div class="row bongesszen colored-grey">
+        <div class="col text-center  colored-grey   bongesszen">
+          <br><br>
+          <h3>Hasznos Tippek</h3>
+          <br>
+          <p> A Raktárbank.hu ingyenesen biztosítja az ingatlantulajdonosoknak a bérbe adó vagy eladó ipari ingatlanjuk testreszabott megjelenítését az ország egész területéről</p>
+        <br><br>
+        </div>
+      </div>
+      <div class="row bongesszen colored-grey">
+  
+        <div class="col text-center colored-grey bongesszen">
+          <img src="raktar_ikon.png">
+          <br><br>
+          <h5>Igények Elemzése</h5>
+          <br>
+          <p style="font-size:14px;">Az Ön által megadott paraméterek alapján, figyelembe véve üzleti igényeit és ügyfélkörét, segítünk a megfelelő iroda típus kiválasztásában. Legyen szó hagyomás vagy instant iroda bérlésről, közösségi irodáról, környezetbarát, zöld irodákról vagy más preferált iroda kategóriáról, biztosan megtaláljuk az Önhöz leginkább illőt.</p>
+        </div>
+        <div class="col text-center colored-grey bongesszen">
+          <img src="maps_ikon.png">
+          <br><br>
+          <h5>Iroda Keresés</h5>
+          <br>
+          <p style="font-size:14px;">A kiválasztott irodatípusnak megfelelően, megkeressük az igényeinek leginkábbb megfelelő budapesti irodákat, a terület nagysága, tervezett bérleti időszak hossza és a büdzsé alapján. Adatbázisunk naprakész az irodaházakban elérhető kiadó területek és szolgáltatott irodahelyiségek valamint minőségi lakásirodák tekintetében.</p>
+        </div>
+        <div class="col text-center colored-grey bongesszen">
+          <img src="ajanlat_ikon.png">
+          <br><br>
+          <h5>Egyedi Ajánlat</h5>
+          <br>
+          <p style="font-size:14px;">A listázott lehetőségekből 24 órán belül részletes, személyre szabott ajánlatot küldünk Önnek, majd a preferált kiadó irodákat az Ön számára legalkalmasbb időpontban bemutatjuk. A megtekintés során kollégánk segít minden gyakorlati szempontot figyelembe venni, ami támogatja a legoptimálisabb döntés megszületését.</p>
+        </div>
+        <div class="col text-center colored-grey bongesszen">
+          <img src="agreement_ikon.png">
+          <br><br>
+          <h5>Bérlőképviselet</h5>
+          <br>
+          <p style="font-size:14px;">Egy új iroda birtokbavétele hosszú távú elköteleződést jelent, így az elérhető legjobb iroda bérlési feltételek és ár letárgyalása éppoly fontos tényező, mint maga a helyszín. Ahogy a kiadó iroda kiválasztása során úgy a megállapodás folyamatában is részt veszünk, hogy a lehető legkedvezőbb alku születhessen.</p>
+        </div>
+  
+        </div>
+    </div>
+    
+    </div>
+    <br><br>
+    <div class="container">
+      <div class="row border bongesszen">
+        <div class="col-lg-12 bongesszen">
+          <p><h5>A hely, ahol megtalálhatja eladó/kiadó ipari ingatlantát!</h5></p>
+          <hr>
+          
+          <p><h6>Problémát okoz Önnek, hogy éppen olyan raktárt, kiadó műhelyt vagy telephelyet találjon, amilyenre szüksége van vállalkozásának? Telket keres, ahol megvalósíthatja céges terveit? Akkor nézzen körül nálunk, hiszen számos lehetőség közül válogathat egy helyen!</h6></p>
+          <br>
+          <p><h5>Raktár bérlés, eladó csarnok vásárlás kedvező feltételekkel Budapesten és Magyarország számos pontján!</h5></p>
+          <hr>
+          
+          <p><h6>Weboldalunkon több funkcióval várjuk Önt, amelyekkel megkönnyítheti a keresést. Nemcsak arra van lehetősége, hogy lokáció szerinti szűrést végezzen, hanem méret és ár tekintetében is beállíthatja a szűrési adatokat. Ezzel jelentősen lerövidülhet az idő, amit az új telephelye vagy kiadó raktára felkutatásával kell töltenie, hiszen csak azokat a lehetőségeket mutatjuk meg Önnek, amelyek megfelelnek az igényeinek6.</h></p>
+            <br> 
+            <p><h5>Raktár bérlés magánszemélyeknek</h5></p>
+              <hr>
+              
+          <p><h6>Nem feltétlenül vásárolna, inkább csak bérelne? Akkor sincs gond, nálunk az eladó műhelyek, ipari telkek, és eladó raktárak mellett kiadó csarnokokat, ingatlanokat is talál! Használja ki a szolgáltatásaink adta előnyöket – ha pedig egyedül nem boldogul, akkor forduljon hozzánk bizalommal, kollégáink a segítségére lesznek! Várjuk jelentkezését!</h6></p>
+        </div>
+        
+    
+      </div>
+      <br><br><br>
+      <div class="row bongesszen">
+        <div class="col-lg-12 text-center">
+          <h3>TÉRKÉPES IRODA KERESŐ</h3>
+          <h6>Nagyítsa a képet a kívánt lokációra és kattintson a jelölőkre az irodaházak eléréséhez.</h6>
+        </div>
+
+      </div>
+     
+    </div>
+    <div class="row">
+      <div id="map"></div> <!--              MAP                -->
+    </div>
+    
+    <br><br><br>
+    <div class="row bongesszen">
+      <div class="col-lg-3 text-center">
+        <img src="szuperhir.png">
+        <br><br>
+        <h4>Szuper Hír</h4>
+       
+        <h6>Tittiri Tattara Bappara Buppi</h6>
+      </div>
+      <div class="col-lg-3 text-center">
+      <img src="szuperhir.png">
+        <br><br>
+        <h4>Másik hír</h4>
+        <h6>Nagyítsa a képet a kívánt lokációra és kattintson a jelölőkre az irodaházak eléréséhez.</h6>
+      </div>
+      <div class="col-lg-3 text-center">
+        <img src="szuperhir.png">
+        <br><br>
+        <h4>Rossz Hír</h4>
+        <h6>Nagyítsa a képet a kívánt lokációra és kattintson a jelölőkre az irodaházak eléréséhez.</h6>
+      </div>
+     <div class="col-lg-3 text-center">
+      <img src="szuperhir.png">
+      <br><br>
+        <h4>Senki se olvassa</h4>
+        <h6>Nagyítsa a képet a kívánt lokációra és kattintson a jelölőkre az irodaházak eléréséhez.</h6>
+      </div>
+    </div>
+</div>
+
+</div> <!-- main cont-->
+  </div>
+  <br><br>   
+<footer>
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 segment-one bongesszen">
+            <h4>HÍVJON MINKET!</h4>
+            <hr>
+            <img src="phone-ikon.png"> +36 30 587 3009
+            <hr>
+            <h5>ADJA FEL HIRDETÉSÉT INGYEN!</h5>
+              <hr>
+              <button class="btn btn-warning">HIRDETÉSFELADÁS</button>
+              <br><br>
+              <a href="url">ÁSZF</a> &nbsp; <a href="url">ADATKEZELÉSI TÁJÉKOZTATÓ</a>
+              <br><br>
+              <a href="url"><img src="facebook.png"></a> &nbsp;<a href="url"><img src="twitter.png"></a> &nbsp; <a href="url"><img src="google.png"></a>
+        </div>
+        <div class="col-lg-4 segment-two bongesszen">
+            <h4>ISMERTETŐ ANYAGOK</h4>
+            <hr>
+            <a href="url">Az ár szerepe</a><br>
+            <a href="url">A méret a lényeg!</a><br>
+            <a href="url">Lokáció fontossága - kiadó ingatlanok</a><br>
+        </div>
+        <div class="col-lg-4 segment-three bongesszen">
+            <h4>ELADÓ</h4>
+            <hr>
+            <a href="url">Eladó budapesti raktárak</a><br>
+            <a href="url">Eladó északpesti raktárak</a><br>
+            <a href="url">Eladó budapesti telkek</a><br>
+            <a href="url">Eladó budapesti telephelyek</a><br>
+           
+            
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+ 
+  <script>
+    // initialize Leaflet
+    var map = L.map('map').setView({lon: 0, lat: 0}, 2);
+
+    // add the OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    }).addTo(map);
+
+    // show the scale bar on the lower left corner
+    L.control.scale().addTo(map);
+
+    // show a marker on the map
+    L.marker({lon: 0, lat: 0}).bindPopup('The center of the world').addTo(map);
+  </script>
+
+    
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1" charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<link rel="stylesheet" href="styles.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+
+</head>
+<body>
+	<div class="grey">
+		<div id="app" class="container">
+			<nav class="navbar navbar-expand-md navbar-light bg-light">
+				<img src="logo.png"  class="d-inline-block align-top text-center" alt="">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav mr-auto">
+						
+					</ul>
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url('/login') }}">Bejelentkezés</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url('/register') }}">Regisztráció</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div> <!--END of HEADER-->
+	
+
+
+<div class="container-fluid">
+	<div class="row purple">
+		<div class="col-lg-7 fluid"> <!-- carousel-->
+			<div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+			  <ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			  </ol>
+			  <div class="carousel-inner" role="listbox">
+				<div class="carousel-item active">
+				  <div class="img-fluid">
+					<img style="width: 100%" class="d-block img-fluid " src="1.jpg" alt="First slide">
+				  </div>
+				</div>
+				<div class="carousel-item">
+				  <div class="img">
+					<img style="width: 100%" class="d-block img-fluid" src="2.jpg" alt="Second slide">
+				  </div>
+				</div>
+				<div class="carousel-item">
+					<div class="img">
+						<img style="width: 100%" class="d-block img-fluid" src="3.jpg" alt="Third slide">
+					</div>
+				</div>
+			  </div>
+			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			  </a>
+			</div>
+		</div> <!--carousel end-->
+		<div class="col-lg-4 float-left"><!--searchbar tab DIV-->
+			<ul class="nav nav-tabs navbut navx" role="tablist">
+			  <li class="nav-item navbut float-left">
+				<a href="#raktar"  style="   "role="tab" class="nav-link filter float-left "data-toggle="tab"><img width="30" src="houseraktar.png"> Raktár</a>
+			  </li>
+			  <li class="nav-item">
+				<a href="#telek" role="tab" class="nav-link"data-toggle="tab"><img width="30" src="houseraktar.png"> Telek</a>
+			  </li> 
+			  <li class="nav-item">
+				<a href="#telephely" role="tab" class="nav-link"data-toggle="tab"><img width="30" src="houseraktar.png"> Telephely</a>
+			  </li>
+			</ul>
+			<div class="tab-content bold">
+				<div role="tabpanel"class="tab-pane fadeIn  active" id="raktar"> <!--RAKTAR TAB-->
+					<div class="container">
+						<div class="row">
+						<div class="col-lg-12">
+							<form class="form-horizontal" ><!--FORM Begins-->
+								<div class="container">
+								<div class="row">
+									<div class="col-lg-12">
+									<br>
+										<div class="control-group" ><!--radio buttons-->
+									<label class="control control-radio cont">
+										Eladó
+										<input type="radio" name="radio"  checked="checked" />
+										<span class="checkmark"></span>
+									</label>
+									<label class="control control-radio cont">
+										Kiadó
+										<input type="radio" name="radio" />
+										<span class="checkmark"></span>
+									</label>
+				   
+									</div><!--radio buttons-->
+									</div>
+								</div>
+								</div>
+								
+								
+								<div class="container">
+								<div class="row">
+									<div class="form-group col-lg-12 bold">
+										
+										<input type="text"   id="locationInput" class="	"  aria-describedby="textHelp" placeholder="Location">
+									</div>
+									
+									</div>
+								</div>
+								
+									
+								
+								<div class="container">
+									<div class="row">
+										<div class=" form-group col-lg-3">
+												<select id="currPick" class="form-control form-control-sm">
+												<optgroup>
+												<option>EUR</option>
+												<option>HUF</option>
+												<option>USD</option>
+												</optgroup>
+												</select>
+										</div>
+										<div class="  text-center col-centered col-sm-12 col-lg-6"id="minText">
+											MINIMUM ÁR
+										</div>
+										<div class=" col-lg-3 text-center col-centered">
+											<input type="number" class="" id="minInput" placeholder="/hó/nm">
+										</div>
+									</div>	
+									<div class="row">
+										<div class="  col-lg-3">	
+											<!--offset-->
+										</div>
+										<div class=" text-center col-sm-12 cold-md-12 col-lg-6 "id="maxText">
+											MAXIMUM ÁR
+										</div>
+										<div class=" col-sm-12 cold-md-12 col-lg-3">
+									
+										<input type="number"style= class=" " id="maxInput" placeholder="/hó/nm">
+										
+										</div>
+								
+									</div>
+								</div>
+								<hr style="height:2px;border-width:0;color:#501327;background-color:#501327">
+								<div class="container">
+									
+									<div class="row">
+									
+										<div class="col-lg-2 text-center" id="meretText">
+											MÉRET
+										</div>
+											<div class="  col-lg-5" id="meretText2">
+												<input type="number"style= '' class="" id="inputmeret1" placeholder="/hó/nm">
+												-tól
+											</div>
+										<div class="  col-lg-5" id="meretText2">
+											<input type="nubmer"style='' class="" id="inputmeret2" placeholder="/hó/nm">
+											-ig
+										</div>
+											
+								
+									</div>
+									
+								</div>
+								<hr style="height:2px;border-width:0;color:#501327;background-color:#501327">
+								<div class="container">
+									
+								<div class="row" ><!-- tobb feltetel-->
+									<div class="col-lg-12">
+										<div class="dropdown" style="font-weight: bold;font-size:12px;"> 
+											<button class="btn btn-warning" type="button" data-toggle="collapse"data-target="#tobbFeltetel" aria-expanded="false" aria-controls="tobbFeltetel">x
+											</button> &nbsp		Több feltétel mutatása
+												<div class="collapse between" id="tobbFeltetel">
+													<div class="card card-body"style="background-color: #6c2539;">	
+														<div class="row">
+															<div class=" col-lg-12">
+																<input type="checkbox" class="" id="exampleCheck1">
+																<label class="" for="exampleCheck1">Rámpa</label>
+																<input type="checkbox" class="" id="exampleCheck1">
+																<label class="" for="exampleCheck1">Iparvágány</label>
+															
+															
+																<input type="checkbox" class="" id="exampleCheck1">
+																<label class="" for="exampleCheck1">Vágány</label>
+																<input type="checkbox" class="" id="exampleCheck1">
+																<label class="" for="exampleCheck1">Rámpa</label>
+															</div>
+														</div>
+														 <!--checkboxes END-->
+													</div>
+											</div><!--collapse END-->
+										</div>
+									</div>  <!--feltetel COL ENDS-->
+								</div>  <!--tobb feltetel ENDS-->
+								</div>
+								
+							</form><!--FORM ENDS-->
+						</div>
+					</div> <!--FORM ROW-->
+					</div>
+					
+				</div><!--TAB PANEL ENDS-->
+			</div> <!-- tabcontent END--->
+		</div> <!--searchbar COL DIV END-->
+		<div class="col-lg-1"></div>
+	</div><!--row-->     
+</div> <!--container end-->
+
+<div class="container-fluid">
+<div class="row">
+  <div class="col-lg-12 text-center" style="background-image: linear-gradient(to right,#f48228,#f48228);">
+<p><h6><u>SEGÍTÜNK MEGTALÁLNI A LEGJOBB INGATLANT!</u></h6></p>
+  </div>
+</div>
+</div>
+<div class="container">
+	<div class="row"> <!--carousel row-->
+		<div class=" col-lg-12 ">
+			
+				 <!-- first item -->
+					<div class="row margin-top-15">
+						<div class="col-lg-12 col-sm-4">
+							<div class="your-class">
+								
+								<div class="card myborder mycard"> 
+									
+										<div class="row">
+											<div class="col-lg-12 thumbnail">
+												<div class="border-bottom2">
+													<img src="kenyeri.png" width="100%"alt="slider image">
+												</div>
+											</div> 
+										</div>
+
+											<div class="row">
+												<div class="col-10 thumbnail bold cardline  ">
+													<div class="mycardpad">Kenyeri raktar</div>
+													
+												</div>
+												<div class="col-2 thumbnail bold cardline  ">
+													
+													<img src="kisikon.png" class="card-icon" height="30" >
+												</div> 
+											</div>
+											
+											
+											<div class="row">
+												<div class="col-lg-12 thumbnail greyfont  ">	
+													<div class="border-bottom2 ">
+														<div class="mycardpad">Pest megye</div>
+													</div>
+												</div> 
+											</div>
+											<div class="row">
+												<div class="col-lg-6 myborder-right text-center mx-auto bold">
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Raktár: 1500nm</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Iroda: 320nm</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Telek: 3019nm</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6   card-price my-auto mx-auto bold font14">
+													3,03EUR/nm/hó
+												</div>
+												
+											</div>
+								</div>
+								<div class="card myborder mycard"> 
+									
+										<div class="row">
+											<div class="col-lg-12 thumbnail">
+												<div class="border-bottom2">
+													<img src="kenyeri.png" width="100%"alt="slider image">
+												</div>
+											</div> 
+										</div>
+
+											<div class="row">
+												<div class="col-10 thumbnail bold cardline  ">
+													<div class="mycardpad">Kenyeri raktar</div>
+													
+												</div>
+												<div class="col-2 thumbnail bold cardline  ">
+													
+													<img src="kisikon.png" class="card-icon" height="30" >
+												</div> 
+											</div>
+											
+											
+											<div class="row">
+												<div class="col-lg-12 thumbnail greyfont  ">	
+													<div class="border-bottom2 ">
+														<div class="mycardpad">Pest megye</div>
+													</div>
+												</div> 
+											</div>
+											<div class="row">
+												<div class="col-lg-6 myborder-right text-center mx-auto bold">
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Raktár: 1500nm</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Iroda: 320nm</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Telek: 3019nm</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6   card-price my-auto mx-auto bold font14">
+													3,03EUR/nm/hó
+												</div>
+												
+											</div>
+								</div>
+								<div class="card myborder mycard"> 
+									
+										<div class="row">
+											<div class="col-lg-12 thumbnail">
+												<div class="border-bottom2">
+													<img src="kenyeri.png" width="100%"alt="slider image">
+												</div>
+											</div> 
+										</div>
+
+											<div class="row">
+												<div class="col-10 thumbnail bold cardline  ">
+													<div class="mycardpad">Kenyeri raktar</div>
+													
+												</div>
+												<div class="col-2 thumbnail bold cardline  ">
+													
+													<img src="kisikon.png" class="card-icon" height="30" >
+												</div> 
+											</div>
+											
+											
+											<div class="row">
+												<div class="col-lg-12 thumbnail greyfont  ">	
+													<div class="border-bottom2 ">
+														<div class="mycardpad">Pest megye</div>
+													</div>
+												</div> 
+											</div>
+											<div class="row">
+												<div class="col-lg-6 myborder-right text-center mx-auto bold">
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Raktár: 1500nm</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Iroda: 320nm</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Telek: 3019nm</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6   card-price my-auto mx-auto bold font14">
+													3,03EUR/nm/hó
+												</div>
+												
+											</div>
+								</div>
+								<div class="card myborder mycard"> 
+									
+										<div class="row">
+											<div class="col-lg-12 thumbnail">
+												<div class="border-bottom2">
+													<img src="kenyeri.png" width="100%"alt="slider image">
+												</div>
+											</div> 
+										</div>
+
+											<div class="row">
+												<div class="col-10 thumbnail bold cardline  ">
+													<div class="mycardpad">Kenyeri raktar</div>
+													
+												</div>
+												<div class="col-2 thumbnail bold cardline  ">
+													
+													<img src="kisikon.png" class="card-icon" height="30" >
+												</div> 
+											</div>
+											
+											
+											<div class="row">
+												<div class="col-lg-12 thumbnail greyfont  ">	
+													<div class="border-bottom2 ">
+														<div class="mycardpad">Pest megye</div>
+													</div>
+												</div> 
+											</div>
+											<div class="row">
+												<div class="col-lg-6 myborder-right text-center mx-auto bold">
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Raktár: 1500nm</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Iroda: 320nm</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Telek: 3019nm</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6   card-price my-auto mx-auto bold font14">
+													3,03EUR/nm/hó
+												</div>
+												
+											</div>
+								</div>
+								<div class="card myborder mycard"> 
+									
+										<div class="row">
+											<div class="col-lg-12 thumbnail">
+												<div class="border-bottom2">
+													<img src="kenyeri.png" width="100%"alt="slider image">
+												</div>
+											</div> 
+										</div>
+
+											<div class="row">
+												<div class="col-10 thumbnail bold cardline  ">
+													<div class="mycardpad">Kenyeri raktar</div>
+													
+												</div>
+												<div class="col-2 thumbnail bold cardline  ">
+													
+													<img src="kisikon.png" class="card-icon" height="30" >
+												</div> 
+											</div>
+											
+											
+											<div class="row">
+												<div class="col-lg-12 thumbnail greyfont  ">	
+													<div class="border-bottom2 ">
+														<div class="mycardpad">Pest megye</div>
+													</div>
+												</div> 
+											</div>
+											<div class="row">
+												<div class="col-lg-6 myborder-right text-center mx-auto bold">
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Raktár: 1500nm</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Iroda: 320nm</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+															<div class="mycardpad">Telek: 3019nm</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6   card-price my-auto mx-auto bold font14">
+													3,03EUR/nm/hó
+												</div>
+												
+											</div>
+								</div>
+								
+								<div class="card myborder mycard"> 
+									
+										<div class="row">
+											<div class="col-lg-12 thumbnail">
+												<div class="border-bottom2">
+													<img src="kenyeri.png" width="100%"alt="slider image">
+												</div>
+											</div> 
+										</div>
+
+											<div class="row">
+												<div class="col-12 thumbnail bold cardline  ">
+													Kenyeri raktar
+
+												</div> 
+											</div>
+											
+											
+											<div class="row">
+												<div class="col-lg-12 thumbnail greyfont  ">	
+													<div class="border-bottom2 ">
+														Pest megye
+													</div>
+												</div> 
+											</div>
+											<div class="row">
+												<div class="col-lg-6 myborder-right text-center mx-auto bold">
+													<div class="row">
+														<div class="col-lg-12 text-left">
+														Raktár: 1500nm
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+														Iroda: 320nm
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 text-left">
+														Telek: 3019nm
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6  card-price my-auto mx-auto bold font14">
+													3,03EUR/nm/hó
+												</div>
+												
+											</div>
+								</div>
+								
+											
+										
+												
+											
+											
+							</div>
+						</div>
+					</div>
+				 <!-- end of item-->
+				
+		</div>
+	</div> <!-- end of carousel slide content-->
+</div>
+ <div class="container	">
+      <div class="row">
+        <div class="col-lg-6">
+			<div class="jumbotron myjumbo">
+				<h4 class="display-4">Adja fel hirdetését <span class="yellowText">most ingyen!</span></p></h4>
+				<p class="lead"></p>
+				<hr class="my-4 ">
+				<p class="bold">A RAKTÁRBANK.hu ingyenes biztosítja az ingatlan tulajdonosoknak a bérbe adó vagy eladó ipari ingatlanjuk testreszabott megjelenítését az egész ország területéről.</p>
+				<p class="lead margin-top-15">
+				<a href="#" class="feladbtn margin-top-15">HIRDETÉSFELADÁS</a>
+				</p>
+			</div><!--jumbotron-->
+		</div><!--col-->
+		<div class="col-lg-6">
+			<div class="jumbotron jumbimg">
+				
+			</div><!--jumbotron-->
+		</div><!--col-->
+	</div><!--row-->	
+</div><!--container-->		
+		
+		
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="my-class">
+				
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+
+
+  
+
+  <br>
+  <div class="container">
+      <div class="row pink  ">
+        <div class="col text-center blacktext">
+          <br><br>
+          <h3>Böngésszen Kínálatunkban!</h3>
+          <br>
+          <p> A Raktárbank.hu ingyenesen biztosítja az ingatlantulajdonosoknak a bérbe adó vagy eladó ipari ingatlanjuk testreszabott megjelenítését az ország egész területéről</p>
+          <br>
+        </div>
+        <br>
+      </div>
+     
+      <div class="row pink ">
+        <div class="col text-center blacktext">
+          <img src="raktar_ikon.png">
+          <br><br>
+          <h5>Raktár Hirdetés</h5>
+          <br>
+          <p style="font-size:44px;"> 1682</p>
+        </div>
+        <div class="col text-center blacktext">
+          <img src="field_ikon.png">
+          <br><br>
+          <h5>Üres Telek</h5>
+          <br>
+          <p style="font-size:44px;"> 25</p>
+        </div>
+        <div class="col text-center blacktext" >
+          <img src="szanto_ikon.png">
+          <br>
+          <h5>Szántó</h5>
+          <br>
+          <p style="font-size:44px; "> 8</p>
+        </div>
+        <div class="col text-center blacktext">
+          <img src="negyzet_ikon.png">
+          <br><br>
+          <h5>Négyzetméter</h5>
+          <br>
+          <p style="font-size:44px;"> 9587</p>
+        </div>
+        <div class="col text-center blacktext">
+          <img src="ujhirdetes_ikon.png">
+          <br><br>
+          <h5>Új hirdetés</h5>
+          <br>
+          <p style="font-size:44px;"> 16</p>
+        </div>
+  
+		</div>  
+	</div>  
+      <br<br><br<br>
+	  <div class="container-fluid">
+    <div class="row ">
+      <div class="col text-center bongesszen ">
+        <br><br>  
+        <h3>Legjobb Ajánlatok!</h3>
+        <br>
+        <p> A Raktárbank.hu ingyenesen biztosítja az ingatlantulajdonosoknak a bérbe adó vagy eladó ipari ingatlanjuk testreszabott megjelenítését az ország egész területéről</p>
+      </div>
+    </div>
+     </div> 
+	 <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 kiemelt">
+          <div class="card border-standard"  >
+            <img class="card-img-top" src="kenyeri.png" alt="Card image" style="width:100%">
+            <div class="card-body">
+              <div class="col kiemelt text-center" ><h6 class="card-title">Kenyeri Raktar</h6></div>
+              
+              <div class="row kiemelt"><!--adatok row-->
+                <div class="col-lg-7 kiemelt"><!--terulet col-->
+                  Raktár: 3400nm<br>
+                  Iroda : 420nm<br>
+                  Telek : 6400nm
+                </div>
+                <div class="col text-center mx-auto my-auto justify-content-center align-self-center"> <!--AR col-->
+                  3500EUR / hó
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 kiemelt">
+          <div class="card border-standard" >
+            <img class="card-img-top" src="kenyeri.png" alt="Card image" style="width:100%">
+            <div class="">
+              <div class="col kiemelt text-center" ><h6 class="card-title">Kenyeri Raktar</h6></div>
+              
+              <div class="row kiemelt"><!--adatok row-->
+                <div class="col-lg-7 kiemelt"><!--terulet col-->
+                  Raktár: 3400nm<br>
+                  Iroda : 420nm<br>
+                  Telek : 6400nm
+                </div>
+                <div class="col text-center justify-content-center align-self-center"> <!--AR col-->
+                  3500EUR / hó
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 kiemelt">
+          <div class="card border-standard"  >
+            <img class="card-img-top" src="kenyeri.png" alt="Card image" style="width:100%">
+            <div class="card-body">
+              <div class="col kiemelt text-center" ><h6 class="card-title">Kenyeri Raktar</h6></div>
+              
+              <div class="row kiemelt"><!--adatok row-->
+                <div class="col-lg-7 kiemelt"><!--terulet col-->
+                  Raktár: 3400nm<br>
+                  Iroda : 420nm<br>
+                  Telek : 6400nm
+                </div>
+                <div class="col text-center justify-content-center align-self-center"> <!--AR col-->
+                  3500EUR / hó
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+  
+    </div>
+    <div class="container">
+      <div class="row bongesszen colored-grey">
+        <div class="col text-center  colored-grey  bongesszen">
+          <br><br>
+          <h3>Hasznos Tippek</h3>
+          <br>
+          <p> A Raktárbank.hu ingyenesen biztosítja az ingatlantulajdonosoknak a bérbe adó vagy eladó ipari ingatlanjuk testreszabott megjelenítését az ország egész területéről</p>
+        <br><br>
+        </div>
+      </div>
+      <div class="row bongesszen colored-grey">
+  
+        <div class="col text-center colored-grey bongesszen">
+          <img src="raktar_ikon.png">
+          <br><br>
+          <h5>Igények Elemzése</h5>
+          <br>
+          <p style="font-size:14px;">Az Ön által megadott paraméterek alapján, figyelembe véve üzleti igényeit és ügyfélkörét, segítünk a megfelelő iroda típus kiválasztásában. Legyen szó hagyomás vagy instant iroda bérlésről, közösségi irodáról, környezetbarát, zöld irodákról vagy más preferált iroda kategóriáról, biztosan megtaláljuk az Önhöz leginkább illőt.</p>
+        </div>
+        <div class="col text-center colored-grey bongesszen">
+          <img src="maps_ikon.png">
+          <br><br>
+          <h5>Iroda Keresés</h5>
+          <br>
+          <p style="font-size:14px;">A kiválasztott irodatípusnak megfelelően, megkeressük az igényeinek leginkábbb megfelelő budapesti irodákat, a terület nagysága, tervezett bérleti időszak hossza és a büdzsé alapján. Adatbázisunk naprakész az irodaházakban elérhető kiadó területek és szolgáltatott irodahelyiségek valamint minőségi lakásirodák tekintetében.</p>
+        </div>
+        <div class="col text-center colored-grey bongesszen">
+          <img src="ajanlat_ikon.png">
+          <br><br>
+          <h5>Egyedi Ajánlat</h5>
+          <br>
+          <p style="font-size:14px;">A listázott lehetőségekből 24 órán belül részletes, személyre szabott ajánlatot küldünk Önnek, majd a preferált kiadó irodákat az Ön számára legalkalmasbb időpontban bemutatjuk. A megtekintés során kollégánk segít minden gyakorlati szempontot figyelembe venni, ami támogatja a legoptimálisabb döntés megszületését.</p>
+        </div>
+        <div class="col text-center colored-grey bongesszen">
+          <img src="agreement_ikon.png">
+          <br><br>
+          <h5>Bérlőképviselet</h5>
+          <br>
+          <p style="font-size:14px;">Egy új iroda birtokbavétele hosszú távú elköteleződést jelent, így az elérhető legjobb iroda bérlési feltételek és ár letárgyalása éppoly fontos tényező, mint maga a helyszín. Ahogy a kiadó iroda kiválasztása során úgy a megállapodás folyamatában is részt veszünk, hogy a lehető legkedvezőbb alku születhessen.</p>
+        </div>
+  
+        </div>
+    </div>
+    
+    </div>
+    <br><br>
+    <div class="container">
+      <div class="row border bongesszen">
+        <div class="col-lg-12 bongesszen">
+          <p><h5>A hely, ahol megtalálhatja eladó/kiadó ipari ingatlantát!</h5></p>
+          <hr>
+          
+          <p><h6>Problémát okoz Önnek, hogy éppen olyan raktárt, kiadó műhelyt vagy telephelyet találjon, amilyenre szüksége van vállalkozásának? Telket keres, ahol megvalósíthatja céges terveit? Akkor nézzen körül nálunk, hiszen számos lehetőség közül válogathat egy helyen!</h6></p>
+          <br>
+          <p><h5>Raktár bérlés, eladó csarnok vásárlás kedvező feltételekkel Budapesten és Magyarország számos pontján!</h5></p>
+          <hr>
+          
+          <p><h6>Weboldalunkon több funkcióval várjuk Önt, amelyekkel megkönnyítheti a keresést. Nemcsak arra van lehetősége, hogy lokáció szerinti szűrést végezzen, hanem méret és ár tekintetében is beállíthatja a szűrési adatokat. Ezzel jelentősen lerövidülhet az idő, amit az új telephelye vagy kiadó raktára felkutatásával kell töltenie, hiszen csak azokat a lehetőségeket mutatjuk meg Önnek, amelyek megfelelnek az igényeinek6.</h></p>
+            <br> 
+            <p><h5>Raktár bérlés magánszemélyeknek</h5></p>
+              <hr>
+              
+          <p><h6>Nem feltétlenül vásárolna, inkább csak bérelne? Akkor sincs gond, nálunk az eladó műhelyek, ipari telkek, és eladó raktárak mellett kiadó csarnokokat, ingatlanokat is talál! Használja ki a szolgáltatásaink adta előnyöket – ha pedig egyedül nem boldogul, akkor forduljon hozzánk bizalommal, kollégáink a segítségére lesznek! Várjuk jelentkezését!</h6></p>
+        </div>
+        
+    
+      </div>
+      <br><br><br>
+      <div class="row bongesszen">
+        <div class="col-lg-12 text-center">
+          <h3>TÉRKÉPES IRODA KERESŐ</h3>
+          <h6>Nagyítsa a képet a kívánt lokációra és kattintson a jelölőkre az irodaházak eléréséhez.</h6>
+        </div>
+		<br><br>
+
+      </div>
+     
+    </div>
+	<div class="container">
+	<div class="row">
+		<div class="col-lg-12 justify-content-center>
+			<div id="tabs-2" class="tab-content col justify-content-center" >
+				<!--<div class=" col justify-content-center mapimg" style="display: block; background: url(&quot;http://raktarbank.hu/images/maps/magyarorszag.jpg&quot;); position: relative; padding: 0px; width: 550px; height: 319px;"><canvas style="width: 550px; height: 319px; position: absolute; left: 0px; top: 0px; padding: 0px; border: 0px; opacity: 1;" height="319" width="550"></canvas><img class="mapx maphilighted" src="http://raktarbank.hu/images/maps/magyarorszag.jpg" alt="Magyarország térkép" usemap="#magyarorszag" style="opacity: 0; position: absolute; left: 0px; top: 0px; padding: 0px; border: 0px;">
+				</div> -->
+				<div class="col-lg-12">
+				<img src="magyarorszag.jpg" class="mapimg mx-auto d-block" usemap="#magyarorszag">
+				</div>
+				<map name="magyarorszag">
+					<area class="Budapest"  href="#Budapest" title="Budapest" shape="poly" coords="244, 115, 234, 118, 235, 125, 235, 137, 241, 137, 245, 136, 251, 143, 257, 133, 266, 127, 259, 123, 252, 120"><area class="Baranya Megye" href="#Baranya Megye" title="Baranya Megye" shape="poly" coords="190, 242, 179, 242, 179, 249, 170, 253, 162, 252, 158, 261, 148, 262, 144, 261, 140, 274, 138, 280, 141, 284, 137, 286, 138, 289, 145, 294, 143, 298, 138, 300, 148, 303, 154, 309, 165, 303, 168, 310, 182, 308, 186, 312, 192, 309, 196, 312, 202, 304, 204, 307, 213, 298, 215, 292, 224, 298, 227, 289, 227, 281, 220, 281, 221, 272, 209, 264, 204, 258, 201, 254, 192, 262, 195, 255, 190, 250, 194, 246"><area class="Bács-Kiskun Megye" href="#Bács-Kiskun Megye" title="Bács-Kiskun Megye" shape="poly" coords="283, 167, 276, 166, 273, 173, 261, 175, 262, 166, 257, 164, 254, 167, 247, 170, 244, 173, 235, 172, 236, 181, 234, 194, 236, 205, 238, 214, 235, 218, 230, 217, 229, 220, 232, 229, 234, 240, 231, 242, 234, 249, 232, 256, 229, 257, 229, 260, 225, 263, 230, 265, 223, 273, 219, 280, 222, 282, 227, 280, 230, 283, 226, 289, 224, 298, 229, 293, 237, 293, 240, 290, 242, 290, 247, 280, 251, 287, 261, 286, 266, 280, 280, 272, 277, 268, 283, 264, 289, 265, 285, 255, 288, 252, 287, 247, 291, 245, 293, 247, 299, 244, 303, 243, 305, 238, 305, 232, 299, 229, 295, 228, 305, 224, 308, 225, 312, 218, 312, 211, 310, 206, 315, 199, 312, 195, 320, 193, 321, 187, 319, 183, 321, 178, 316, 177, 310, 180, 306, 182, 303, 179, 298, 184, 292, 179, 285, 174"><area class="Békés Megye" href="#Békés Megye" title="Békés Megye" shape="poly" coords="433, 173, 427, 176, 423, 179, 418, 181, 414, 177, 403, 177, 401, 168, 408, 163, 401, 159, 388, 156, 383, 152, 374, 160, 373, 171, 368, 173, 365, 172, 365, 185, 358, 188, 353, 186, 349, 189, 343, 190, 343, 199, 349, 201, 355, 203, 356, 212, 353, 216, 358, 227, 356, 235, 353, 241, 356, 246, 360, 246, 367, 242, 370, 254, 377, 253, 378, 257, 383, 251, 393, 258, 397, 250, 403, 246, 403, 239, 409, 238, 410, 233, 406, 228, 412, 215, 419, 215, 417, 207, 423, 207, 420, 199, 425, 191, 430, 190, 428, 182, 435, 179"><area class="Borsod-Abaúj-Zemplén Megye" href="#Borsod-Abaúj-Zemplén Megye" title="Borsod-Abaúj-Zemplén Megye" shape="poly" coords="374, 10, 358, 10, 347, 14, 340, 27, 330, 44, 319, 43, 315, 52, 322, 59, 330, 61, 334, 58, 338, 59, 343, 55, 345, 66, 345, 74, 345, 83, 347, 92, 352, 99, 358, 104, 363, 104, 369, 105, 382, 101, 386, 94, 388, 86, 392, 74, 388, 68, 392, 65, 398, 67, 401, 63, 408, 66, 415, 60, 411, 55, 414, 50, 422, 47, 431, 49, 440, 45, 448, 42, 456, 35, 459, 35, 461, 26, 451, 24, 448, 28, 442, 29, 440, 32, 431, 29, 428, 19, 423, 14, 411, 5, 409, 10, 402, 9, 404, 14, 396, 10, 388, 17, 380, 15"><area class="Csongrád Megye" href="#Csongrád Megye" title="Csongrád Megye" shape="poly" coords="344, 198, 334, 202, 330, 199, 325, 202, 314, 201, 311, 205, 312, 210, 311, 221, 308, 225, 304, 223, 297, 228, 297, 230, 305, 235, 303, 245, 295, 247, 292, 245, 288, 248, 289, 251, 286, 255, 289, 261, 290, 267, 297, 270, 310, 265, 317, 269, 318, 264, 322, 268, 326, 268, 331, 273, 333, 267, 339, 266, 344, 270, 352, 264, 362, 269, 367, 269, 367, 264, 371, 253, 367, 249, 367, 244, 364, 243, 360, 246, 353, 243, 355, 233, 356, 225, 353, 213, 355, 204, 349, 201"><area class="Fejér Megye" href="#Fejér Megye" title="Fejér Megye" shape="poly" coords="214, 116, 207, 122, 206, 126, 197, 126, 194, 134, 186, 133, 182, 128, 175, 130, 173, 139, 170, 141, 170, 147, 175, 152, 178, 149, 183, 156, 180, 162, 183, 166, 182, 170, 184, 177, 179, 183, 182, 190, 181, 201, 187, 198, 192, 202, 197, 201, 196, 206, 203, 204, 208, 201, 212, 211, 217, 210, 220, 203, 228, 198, 233, 192, 237, 186, 235, 178, 236, 174, 232, 168, 230, 159, 233, 148, 224, 141, 222, 134, 223, 127"><area class="Győr-Moson-Sopron Megye" href="#Győr-Moson-Sopron Megye" title="Győr-Moson-Sopron Megye" shape="poly" coords="157, 98, 144, 98, 139, 89, 137, 90, 134, 85, 129, 86, 129, 80, 121, 70, 116, 72, 112, 67, 103, 73, 102, 82, 96, 87, 102, 93, 99, 100, 87, 102, 85, 98, 82, 104, 77, 103, 74, 96, 71, 98, 68, 94, 62, 94, 59, 100, 52, 103, 61, 107, 70, 110, 71, 120, 68, 128, 76, 132, 83, 129, 91, 133, 98, 128, 98, 134, 107, 130, 114, 131, 121, 129, 125, 125, 127, 132, 132, 127, 134, 129, 138, 127, 147, 128, 152, 134, 148, 139, 147, 143, 150, 146, 154, 141, 154, 137, 158, 137, 158, 134, 159, 130, 157, 127, 160, 125, 158, 119, 161, 118, 162, 113, 158, 108, 159, 103"><area class="Hajdú-Bihar Megye" href="#Hajdú-Bihar Megye" title="Hajdú-Bihar Megye" shape="poly" coords="438, 101, 429, 96, 421, 89, 422, 76, 414, 77, 401, 79, 396, 75, 391, 75, 388, 81, 387, 87, 388, 92, 385, 97, 382, 96, 381, 100, 371, 107, 371, 113, 376, 115, 382, 115, 384, 120, 383, 127, 387, 141, 385, 153, 389, 156, 396, 158, 406, 160, 407, 166, 402, 169, 403, 176, 413, 178, 416, 178, 421, 182, 426, 179, 426, 175, 434, 172, 439, 163, 444, 163, 443, 155, 447, 154, 446, 147, 452, 132, 457, 134, 457, 120, 462, 111, 465, 110, 460, 104, 457, 107, 453, 99, 447, 97, 442, 103"><area class="Heves Megye" href="#Heves Megye" title="Heves Megye" shape="poly" coords="344, 72, 346, 61, 339, 54, 336, 60, 330, 58, 328, 62, 319, 57, 311, 61, 308, 63, 313, 69, 309, 73, 303, 81, 296, 79, 299, 84, 295, 82, 290, 92, 284, 92, 283, 97, 279, 101, 284, 105, 287, 117, 291, 111, 299, 116, 302, 107, 310, 106, 312, 117, 320, 117, 326, 112, 332, 123, 342, 133, 353, 123, 362, 115, 362, 109, 361, 103, 352, 103, 352, 98, 348, 94, 345, 86, 342, 81, 348, 79"><area class="Jász-Nagykun-Szolnok Megye" href="#Jász-Nagykun-Szolnok Megye" title="Jász-Nagykun-Szolnok Megye" shape="poly" coords="382, 114, 371, 114, 368, 104, 366, 109, 362, 111, 362, 116, 352, 123, 339, 134, 332, 128, 332, 121, 325, 113, 319, 116, 319, 117, 312, 116, 311, 107, 302, 107, 298, 115, 291, 112, 287, 115, 288, 119, 292, 122, 294, 120, 293, 127, 298, 129, 298, 134, 309, 139, 312, 148, 311, 151, 318, 154, 317, 158, 315, 165, 320, 175, 321, 179, 319, 183, 324, 185, 319, 190, 318, 195, 312, 196, 316, 201, 322, 202, 331, 199, 336, 203, 343, 199, 342, 190, 350, 188, 356, 185, 361, 188, 365, 182, 365, 171, 371, 172, 374, 159, 384, 151, 387, 139, 384, 124"><area class="Komárom-Esztergom Megye" href="#Komárom-Esztergom Megye" title="Komárom-Esztergom Megye" shape="poly" coords="226, 91, 219, 91, 217, 97, 211, 97, 198, 96, 186, 101, 185, 98, 159, 98, 159, 111, 162, 114, 160, 120, 159, 122, 159, 127, 159, 135, 162, 138, 165, 141, 170, 141, 175, 130, 181, 128, 190, 136, 193, 134, 194, 127, 199, 127, 204, 122, 210, 118, 216, 118, 222, 110, 222, 106, 229, 109, 229, 102, 234, 104, 232, 95, 232, 91"><area class="Nógrád Megye" href="#Nógrád Megye" title="Nógrád Megye" shape="poly" coords="314, 51, 303, 57, 300, 53, 294, 54, 292, 49, 287, 42, 274, 53, 272, 64, 255, 62, 257, 67, 240, 63, 235, 64, 239, 70, 239, 75, 235, 76, 243, 88, 253, 89, 265, 90, 270, 92, 271, 100, 277, 103, 285, 97, 284, 91, 291, 91, 295, 82, 299, 84, 299, 79, 303, 79, 310, 73, 309, 61, 317, 57"><area class="Pest Megye" href="#Pest Megye" title="Pest Megye" shape="poly" coords="273, 102, 279, 99, 282, 103, 288, 117, 286, 122, 288, 122, 295, 121, 292, 126, 297, 129, 301, 136, 310, 140, 312, 152, 318, 158, 316, 164, 319, 177, 312, 178, 307, 183, 301, 179, 297, 183, 287, 176, 281, 165, 275, 166, 273, 173, 261, 176, 263, 166, 257, 164, 254, 168, 247, 170, 243, 174, 237, 171, 231, 166, 230, 155, 233, 149, 222, 135, 224, 127, 213, 119, 222, 110, 221, 105, 229, 108, 234, 118, 243, 115, 247, 114, 252, 120, 256, 121, 258, 123, 262, 123, 266, 127, 254, 133, 249, 142, 245, 134, 239, 137, 235, 136, 237, 131, 233, 123, 233, 117, 227, 105, 231, 101, 234, 102, 231, 94, 226, 88, 221, 84, 222, 73, 227, 66, 234, 65, 241, 73, 235, 77, 245, 88, 253, 89, 262, 90, 270, 91, 271, 96"><area class="Somogy Megye" href="#Somogy Megye" title="Somogy Megye" shape="poly" coords="178, 182, 171, 181, 160, 185, 158, 191, 155, 189, 147, 195, 133, 201, 128, 203, 123, 202, 119, 206, 112, 204, 112, 211, 108, 212, 109, 231, 104, 231, 106, 235, 103, 237, 97, 239, 95, 239, 95, 245, 93, 250, 86, 252, 82, 250, 88, 257, 107, 267, 105, 272, 112, 277, 111, 283, 115, 291, 134, 290, 138, 300, 145, 297, 139, 290, 136, 285, 140, 283, 137, 278, 140, 275, 145, 259, 148, 263, 154, 262, 160, 258, 161, 251, 167, 253, 171, 251, 171, 244, 166, 242, 171, 237, 168, 226, 172, 222, 172, 216, 175, 211, 175, 206, 181, 200, 181, 191"><area class="Szabolcs-Szatmár-Bereg Megye" href="#Szabolcs-Szatmár-Bereg Megye" title="Szabolcs-Szatmár-Bereg Megye" shape="poly" coords="464, 23, 456, 38, 454, 35, 447, 43, 440, 43, 434, 49, 422, 48, 414, 50, 410, 57, 414, 61, 410, 66, 400, 66, 391, 66, 388, 69, 391, 75, 397, 75, 404, 80, 425, 76, 422, 85, 423, 93, 430, 98, 438, 100, 443, 105, 448, 101, 449, 95, 454, 100, 456, 107, 463, 104, 465, 110, 470, 108, 474, 96, 477, 93, 486, 92, 488, 86, 496, 91, 506, 88, 506, 81, 511, 81, 508, 76, 515, 74, 521, 69, 514, 66, 515, 55, 513, 53, 507, 53, 500, 54, 494, 52, 494, 42, 489, 38, 480, 40, 474, 34, 475, 27, 472, 28, 469, 23"><area class="Tolna Megye" href="#Tolna Megye" title="Tolna Megye" shape="poly" coords="188, 198, 181, 202, 177, 206, 174, 206, 174, 211, 171, 217, 173, 223, 168, 226, 170, 239, 166, 241, 170, 245, 172, 252, 179, 249, 179, 241, 190, 240, 190, 246, 193, 250, 193, 254, 195, 256, 191, 260, 193, 261, 202, 254, 205, 257, 206, 263, 217, 271, 225, 273, 228, 265, 226, 261, 228, 256, 233, 256, 234, 250, 229, 242, 232, 236, 231, 228, 230, 223, 230, 216, 235, 217, 239, 209, 235, 201, 232, 197, 230, 194, 223, 202, 219, 203, 218, 208, 211, 211, 209, 204, 205, 201, 202, 205, 198, 206, 196, 201, 193, 200"><area class="Vas Megye" href="#Vas Megye" title="Vas Megye" shape="poly" coords="99, 133, 97, 128, 90, 134, 85, 129, 76, 132, 68, 128, 60, 133, 53, 132, 55, 147, 53, 150, 53, 159, 59, 160, 54, 166, 58, 170, 55, 174, 44, 174, 37, 180, 32, 179, 30, 191, 44, 186, 45, 192, 44, 197, 45, 200, 50, 198, 57, 193, 61, 190, 65, 184, 71, 182, 78, 184, 83, 178, 92, 180, 94, 174, 98, 173, 99, 168, 109, 168, 108, 160, 108, 150, 111, 144, 114, 139, 108, 134, 107, 129, 100, 130"><area class="Zala Megye" href="#Zala Megye" title="Zala Megye" shape="poly" coords="95, 171, 91, 180, 82, 179, 76, 183, 67, 183, 61, 190, 59, 194, 55, 196, 52, 199, 48, 197, 49, 202, 47, 205, 51, 212, 48, 215, 56, 223, 56, 230, 65, 232, 70, 241, 77, 239, 82, 247, 86, 252, 93, 249, 95, 244, 93, 239, 101, 239, 106, 238, 105, 232, 108, 227, 108, 213, 112, 205, 124, 204, 115, 194, 116, 188, 111, 186, 109, 183, 110, 179, 106, 176, 104, 176"><area class="Veszprém Megye" href="#Veszprém Megye" title="Veszprém Megye" shape="poly" coords="128, 130, 124, 125, 118, 129, 107, 129, 107, 136, 116, 142, 111, 144, 108, 149, 110, 153, 108, 161, 109, 169, 106, 170, 98, 170, 99, 174, 108, 177, 112, 181, 110, 186, 117, 188, 117, 196, 125, 203, 131, 204, 140, 198, 156, 190, 159, 191, 161, 184, 173, 181, 178, 183, 185, 176, 181, 169, 184, 167, 180, 160, 183, 156, 176, 149, 172, 150, 169, 142, 163, 140, 158, 137, 154, 139, 152, 144, 150, 147, 146, 140, 151, 136, 149, 129, 141, 127, 136, 129">
+				</map>
+				<div style="clear:both">
+				</div>
+			</div>	
+		</div>
+	</div>
+	</div>
+    
+
+       <!--              MAP                -->
+    </div>
+    
+    <br><br><br>
+	<div class="container">
+	<div class="row bongesszen">
+      <div class="col-lg-3 text-center border-secondary">
+        <img src="szuperhir.png" width="250">
+        <br><br>
+        <h5>Szuper Hír</h5>
+       
+        <h6>Tittiri Tattara Bappara Buppi</h6>
+      </div>
+      <div class="col-lg-3 text-center">
+      <img src="szuperhir.png" width="250">
+        <br><br>
+        <h5>Másik hír</h5>
+        <h6>Nagyítsa a képet a kívánt lokációra és kattintson a jelölőkre az irodaházak eléréséhez.</h6>
+      </div>
+      <div class="col-lg-3 text-center">
+        <img src="szuperhir.png" width="250">
+        <br><br>
+        <h5>Rossz Hír</h5>
+        <h6>Nagyítsa a képet a kívánt lokációra és kattintson a jelölőkre az irodaházak eléréséhez.</h6>
+      </div>
+     <div class="col-lg-3 text-center" >
+      <img src="szuperhir.png" width="250">
+      <br><br>
+        <h5>Senki se olvassa</h5>
+        <h6>Nagyítsa a képet a kívánt lokációra és kattintson a jelölőkre az irodaházak eléréséhez.</h6>
+      </div>
+    </div>
+</div>
+</div>
+    <br><br>
+	<div class="container-fluid">
+	<div class="row bongesszen">
+		<div class="col-lg-12 text-center " style="margin-top:25px;">
+			<h3>PARTNEREINK</h3>
+			<h6>A Raktárbank.hu állandó ügyfelei</h6>
+		</div>
+	</div>
+	</div>
+	<br><br><br>
+	<div class="container-fluid">
+	<div class="row bongesszen">
+	
+		<div class="col-lg-3 text-center">
+			<img src="partnerco.png">
+		</div>
+		<div class="col-lg-3 text-center">
+			<img src="partner.png">
+		</div>
+		<div class="col-lg-3 text-center">
+		<img src="grifton.png">
+		</div>
+		<div class="col-lg-3 text-center">
+			<img src="partner.png">
+		</div>
+	</div>
+</div> <!-- main cont-->
+  </div>
+  <br><br>   
+<footer>
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 segment-one bongesszen">
+            <h4>HÍVJON MINKET!</h4>
+            <hr>
+            <img src="phone-ikon.png"> +36 30 587 3009
+            <hr>
+            <h5>ADJA FEL HIRDETÉSÉT INGYEN!</h5>
+              <hr>
+              <button class="btn btn-warning">HIRDETÉSFELADÁS</button>
+              <br><br>
+              <a href="url">ÁSZF</a> &nbsp; <a href="url">ADATKEZELÉSI TÁJÉKOZTATÓ</a>
+              <br><br>
+              <a href="url"><img src="facebook.png"></a> &nbsp;<a href="url"><img src="twitter.png"></a> &nbsp; <a href="url"><img src="google.png"></a>
+        </div>
+        <div class="col-lg-4 segment-two bongesszen">
+            <h4>ISMERTETŐ ANYAGOK</h4>
+            <hr>
+            <a href="url">Az ár szerepe</a><br>
+            <a href="url">A méret a lényeg!</a><br>
+            <a href="url">Lokáció fontossága - kiadó ingatlanok</a><br>
+        </div>
+        <div class="col-lg-4 segment-three bongesszen">
+            <h4>ELADÓ</h4>
+            <hr>
+            <a href="url">Eladó budapesti raktárak</a><br>
+            <a href="url">Eladó északpesti raktárak</a><br>
+            <a href="url">Eladó budapesti telkek</a><br>
+            <a href="url">Eladó budapesti telephelyek</a><br>
+           
+            
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+ 
+ <!-- <script>
+    // initialize Leaflet
+    var map = L.map('map').setView({lon: 0, lat: 0}, 2);
+
+    // add the OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    }).addTo(map);
+
+    // show the scale bar on the lower left corner
+    L.control.scale().addTo(map);
+
+    // show a marker on the map
+    L.marker({lon: 0, lat: 0}).bindPopup('The center of the world').addTo(map);
+  </script> -->
+
+    
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
+<script src="js/jquery.maphilight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+<script type="text/javascript" src="slickinit.js"></script> 
+<script type="text/javascript">
+	jQuery(function(){
+		jQuery('.mapimg').maphilight();
+			console.log('after maphi');
+	});
+</script>
+	<script type="text/javascript">
+
+	</script>
+</body>
+
+</html>
